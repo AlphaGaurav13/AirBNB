@@ -2,9 +2,14 @@ const genToken = require("../config/token.js");
 const User = require("../model/user.model.js");
 const bcrypt = require("bcryptjs")
 const  signUp = async (req, res) => {
+    console.log("BODY:", req.body);
     try {
         let {name, email, password} = req.body;
         let existUser = await User.findOne({email});
+        if(!name || !email || !password){
+            return res.status(400).json({message:"All fields required"});
+        }
+
         if(existUser) {
             return res.status(400).json({msg: "User Already Created"});
         }
@@ -20,7 +25,7 @@ const  signUp = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENVIRONMENT = "production",
+            secure: process.env.NODE_ENVIRONMENT === "production",
             sameSite: "strict",
             maxAge: 7 * 24 * 60 * 60 * 1000
         })
