@@ -15,13 +15,17 @@ import { FaShopSlash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom"
 import {authDataContext} from "../Context/AuthContext"
 import axios from "axios"
+
+import { userDataContext } from '../Context/UserContext.jsx';
 export default function Nav() {
     let navigate = useNavigate();
     let [showpopup, setShowpopup] = useState(false);
     let {serverUrl} = useContext(authDataContext);
+    let {userData, setUserData} = useContext(userDataContext);
     const handlelogOut = async () => {
         try {
             let result = await axios.post(serverUrl + "/api/auth/logout", {withcredentials: true});
+            setUserData(null);
             console.log(result);
         } catch(error) {
                 console.log(error);
@@ -45,7 +49,10 @@ export default function Nav() {
             <span className="text-[18px] cursor-pointer rounded-[50px] hover:bg-[#ded9d9] px-[8px] py-[5px] hidden md:block">List your home</span>
             <button className="px-[20px] py-[10px] flex items-center justify-center gap-[5px] border-[1px] border-[#8d8c8c] rounded-[50px] hover:shadow-lg" onClick={() => setShowpopup(prev => !prev)}>
                 <span><GiHamburgerMenu className="w-[20px] h-[20px]"/></span>
-                <span><CgProfile className="w-[23px] h-[23px]"/></span>
+                {userData == null && <span><CgProfile className="w-[23px] h-[23px]"/></span>}
+                {userData != null && <span className="w-[30px] h-[30px] bg-[#080808] text-[white] rounded-full flex items-center justify-center">
+                        {userData?.name.slice(0,1)} 
+                </span>}
             </button>
 
 

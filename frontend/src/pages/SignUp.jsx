@@ -6,11 +6,15 @@ import {useNavigate} from 'react-router-dom'
 import { FaArrowLeftLong } from "react-icons/fa6";
 import {useContext} from 'react'
 import { authDataContext } from '../Context/AuthContext';
+import { userDataContext } from '../Context/UserContext.jsx';
 import axios from 'axios'
+
+
 function SignUp() {
     let navigate = useNavigate();
     let [Show, setShow] = useState(false);
     let {serverUrl} = useContext(authDataContext);
+    let {userData, setUserData} = useContext(userDataContext);
     let [name, setName] = useState("");
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
@@ -23,7 +27,8 @@ function SignUp() {
                 email,
                 password
             }, {withCredentials: true}) 
-
+            setUserData(result.data);
+            navigate("/");
             console.log(result);
         } catch(error) {
             console.log(error);

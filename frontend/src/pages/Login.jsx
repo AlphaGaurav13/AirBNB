@@ -7,12 +7,14 @@ import {useState} from 'react'
 import {authDataContext} from "../Context/AuthContext.jsx"
 import {useContext} from 'react'
 import axios from 'axios'
+import { userDataContext } from '../Context/UserContext.jsx';
 function SignUp() {
     
     let [Show, setShow] = useState(false);
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
     let {serverUrl} = useContext(authDataContext);
+    let {userData, setUserData} = useContext(userDataContext);
     let navigate = useNavigate();
     const handleLogin = async (e) => {
         try {
@@ -21,7 +23,8 @@ function SignUp() {
                 email,
                 password
             }, {withCredentials: true})
-
+            setUserData(result.data);
+            navigate("/");
             console.log(result);
         } catch(error) {
             console.log(error);
