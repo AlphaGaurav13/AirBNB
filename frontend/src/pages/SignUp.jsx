@@ -52,7 +52,7 @@ function SignUp() {
 
             <form action="" onSubmit={handleSignUP} className="max-w-[900px] w-[90%] h-[600px] flex items-center justify-center flex-col md:items-start">
 
-                <h1 className="text-[30px] text-[black]">Welcome to AirBnb</h1>
+                <h1 className="text-[30px] text-[black]">Welcome to AirStay</h1>
                 <div className="w-[90%] flex items-start justify-start flex-col gap-[10px] mt-[30px]">
                     <label htmlFor="name"  className="text-[20px]">UserName</label>
                     <input type="text" id="name" className="p-[10px] w-[90%] h-[40px] border-[2px] border-[#555656] rounded-lg" required 

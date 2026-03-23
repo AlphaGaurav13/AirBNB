@@ -1,5 +1,5 @@
 import React, { useState,useContext } from 'react'
-import logo from "../assets/logo.jpg"
+import logo from "../assets/logo.svg"
 import { IoSearch } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
@@ -76,7 +76,10 @@ export default function Nav() {
     <div className="">
       <div className="w-[100%] min-h-[80px] border-b-[1px] border-[#c7c6c6] flex justify-between items-center p-[20px] ">
         
-        <div className=""><img src={logo} alt="" className="w-[60px] border-[5px]  rounded-[50%]"/></div>
+        <div className="cursor-pointer" onClick={() => navigate("/")}>
+            <img src={logo} alt="AirStay Logo" className="w-[60px] border-[5px] rounded-[50%]"/>
+            <span className="ml-2 text-xl font-bold text-black">AirStay</span>
+        </div>
 
         <div className="w-[35%] relative hidden md:block">
         <input type="text" className="w-[100%] px-[30px] py-[10px] border-[2px] border-[#bdbaba] outline-none overflow-auto rounded-[30px] text-[17px] " placeholder="Any Where | Any Location | Any City" onChange={(e) => handleSearchInput(e.target.value)} />
