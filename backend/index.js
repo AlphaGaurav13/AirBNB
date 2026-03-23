@@ -12,9 +12,11 @@ dotenv.config();
 let app = express();
 const port  = process.env.PORT || 6000
 
+const cors = require('cors');
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // frontend port
-    credentials: true
+  origin: 'https://air-bnb-azure-two.vercel.app',
+  credentials: true
 }));
 // middlewares
 app.use(express.json());
