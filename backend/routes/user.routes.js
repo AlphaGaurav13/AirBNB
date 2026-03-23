@@ -1,8 +1,7 @@
 const express = require("express");
-const isAuth = require("../middleware/isAuth");
 const getCurrentUser = require("../controllers/user.controller.js");
 let userRouter = express.Router();
 
-
-userRouter.get("/currentuser", isAuth, getCurrentUser);
+// Public endpoint: returns null if no valid logged-in user
+userRouter.get("/currentuser", getCurrentUser);
 module.exports = userRouter

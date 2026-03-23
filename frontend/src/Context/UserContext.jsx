@@ -18,14 +18,15 @@ function UserContext({children}) {
 
     const getCurrentUser = async () => {
         try {
-            let result = await axios.get(serverUrl + "/api/user/currentuser",
-                {withCredentials:true}
-            )
-
+            let result = await axios.get(serverUrl + "/api/user/currentuser", { withCredentials: true });
             setUserData(result.data);
-        } catch(error) {
+        } catch (error) {
             setUserData(null);
-            console.log(error);
+            if (error?.response?.status && [400, 401].includes(error.response.status)) {
+                // expected when not logged in; do not spam console
+                return;
+            }
+            console.error("getCurrentUser error:", error);
         }
     }
 

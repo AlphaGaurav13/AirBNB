@@ -14,10 +14,10 @@ const userSchema = new mongoose.Schema( {
         type:String,
         required: true
     },
-    listing: {
+    listings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Listing"
-    },
+    }],
     booking: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Booking"

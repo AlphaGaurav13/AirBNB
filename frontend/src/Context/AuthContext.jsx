@@ -1,11 +1,14 @@
 import React, { createContext } from 'react'
-
+import { useState } from 'react'
 export const authDataContext = createContext();
 function AuthContext({children}) {
 
-    let serverUrl = "http://localhost:8000";
+    let serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:8000";
+
+    let [loading, setLoading] = useState(false);
     let value = {
         serverUrl,
+        loading, setLoading
     }
     return(
         <div>
